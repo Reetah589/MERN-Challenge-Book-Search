@@ -46,7 +46,7 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { saveBook: } },
+          { $addToSet: { saveBook: } },
           { new: true }
         );  
     
@@ -67,7 +67,12 @@ const resolvers = {
 
         return userData;
       }
+
+      throw new AuthenticationError('You need to be logged in');
     },
+
   },
+
 }  
+
   module.exports = resolvers;
