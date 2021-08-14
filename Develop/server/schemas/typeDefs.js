@@ -22,17 +22,18 @@ const typeDefs = gql`
   }
 
   type Book {
-    bookId:
+    _id: ID
+    bookId: String
     authors: [String]
-    description:
-    title:
-    image:
-    link:
+    description: String
+    title: String
+    image: String
+    link: String
   }
 
   type Auth {
-    token:
-    user:
+    token: ID!
+    user: User
   }
 
 `;
