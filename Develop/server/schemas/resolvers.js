@@ -41,12 +41,32 @@ const resolvers = {
       return { token, user};
     },
 
-    saveBook: async () => {
 
+    saveBook: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { saveBook: } },
+          { new: true }
+        );  
+    
+        return userData;
+      }
+    
+      throw new AuthenticationError('You need to be logged in');
     },
 
-    removeBook: async () => {
 
+    removeBook: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findByIdAndRemove(
+          {_id: context.user._id },
+          { $push: {removeBook: } },
+          { new: true }
+        );
+
+        return userData;
+      }
     },
   },
 }  
