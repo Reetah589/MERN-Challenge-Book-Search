@@ -8,7 +8,7 @@ const resolvers = {
         .populate('books')
   
       return userData;
-    },
-  };
+    }
+  },
   
   module.exports = resolvers;
