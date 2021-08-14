@@ -1,8 +1,9 @@
 const resolvers = {
     Query: {
-      helloWorld: () => {
-        return 'Hello world!';
-      }
+      me: async (parent, { username }) => {
+        const params = username ? { username } : {};
+        return Thought.find(params).sort({ createdAt: -1 });
+      },
     }
   };
   
